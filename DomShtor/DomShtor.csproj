@@ -8,12 +8,13 @@
 
     <ItemGroup>
       <Folder Include="App_Start" />
-      <Folder Include="DB\Auth" />
+      <Folder Include="BL\Auth" />
       <Folder Include="Models\Repository" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
+      <PackageReference Include="Dapper" Version="2.0.123" />
+      <PackageReference Include="MySql.Data" Version="8.0.32" />
     </ItemGroup>
 
 </Project>
