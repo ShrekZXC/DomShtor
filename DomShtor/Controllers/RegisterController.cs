@@ -1,4 +1,4 @@
-﻿using DomShtor.BL;
+﻿using DomShtor.BL.Auth;
 using DomShtor.ViewMapper;
 using DomShtor.ViewModels;
 using Microsoft.AspNetCore.Mvc;
