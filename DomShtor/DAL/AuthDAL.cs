@@ -38,7 +38,7 @@ namespace DomShtor.DAL
             using (var connection = new MySqlConnection(DbHelper.ConnString))
             {
                 connection.Open();
-                string sql = @"insert into appuser(Email, Password, Sqlt, Status)
+                string sql = @"insert into appuser(Email, Password, Salt, Status)
                              values(@Email, @Password, @Salt, @Status)";
                 return await connection.ExecuteAsync(sql, model);
             }
