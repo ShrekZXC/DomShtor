@@ -2,5 +2,5 @@
 
 public class DbHelper
 {
-    public static string ConnString = "server=localhost;userid=root;password=123zxc456vbnSQ;database=domshtor";
+    public static string ConnString = "server=127.0.0.1;userid=root;password=123zxc456vbnSQ;database=domshtor";
 }

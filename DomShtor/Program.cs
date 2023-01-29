@@ -3,6 +3,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddSingleton<DomShtor.BL.IAuthBL, DomShtor.BL.AuthBL>();
+builder.Services.AddSingleton<DomShtor.DAL.IAuthDAL, DomShtor.DAL.AuthDAL>(); 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
