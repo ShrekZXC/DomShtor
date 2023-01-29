@@ -8,7 +8,7 @@
 
     <ItemGroup>
       <Folder Include="App_Start" />
-      <Folder Include="BL\Auth" />
+      <Folder Include="BL\Security" />
       <Folder Include="Models\Repository" />
     </ItemGroup>
 

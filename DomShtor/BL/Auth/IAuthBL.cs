@@ -1,6 +1,6 @@
 ﻿using DomShtor.DAL.Models;
 
-namespace DomShtor.BL;
+namespace DomShtor.BL.Auth;
 
 public interface IAuthBL
 {
