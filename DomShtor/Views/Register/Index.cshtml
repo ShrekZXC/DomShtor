@@ -20,34 +20,66 @@
 
 <div class="container reg-form">
     <form class="row justify-content-center col-12" method="post" action="/register">
-        
-        <h2>Регистрация</h2>
-        
-        <div class="mb-3 col-12 col-md-4">
-            <label for="formInputEmail" class="form-label">Email</label>
-            <input id="formInputEmail" class="form-control" name="Email" type="text" aria-describedby="emailHelp" placeholder="Введите почту" value="@Model.Email">
-            <div id="emailHelp" class="form-text">Мы никогда не будем делиться вашей электронной почтой с кем-либо еще.</div>
-        </div>
-        
-        <div class="width-100"></div>
-        
-        <div class="mb-3 col-12 col-md-4">
-            <label for="formInputPassword" class="form-label">Пароль</label>
-            <input id="formInputPassword" class="form-control" name="password" type="password" placeholder="Введите пароль">
-        </div>
-        
-        <div class="width-100"></div>
-        
-        <div class="mb-3 col-12 col-md-4">
-            <label for="formInputPasswordReenter" class="form-label">Повторите пароль</label>
-            <input id="formInputPasswordReenter" class="form-control" type="password" placeholder="Повторите пароль">
-        </div>
-        
-        <div class="width-100"></div>
-        
-        <div class="mb-3 col-12 col-md-4">
-            <button type="submit" class="btn btn-secondary">Зарегистрироваться</button>
-            <a href="/login">Войти</a> 
-        </div>
+
+    <h2>Регистрация</h2>
+    
+    <div class="mb-3 col-12 col-md-4">
+                <label for="formInputEmail" class="form-label">Email</label>
+                <input id="formInputEmail" class="form-control" name="Email" type="text" aria-describedby="emailHelp" placeholder="Введите почту" value="@Model.Email">
+                <div id="emailHelp" class="form-text">Мы никогда не будем делиться вашей электронной почтой с кем-либо еще.</div>
+                <span asp-validation-for="Email"></span>
+            </div>
+
+            <div class="width-100"></div>
+
+            <div class="mb-3 col-12 col-md-4">
+                <label for="formInputSecondName" class="form-label">Фамилия</label>
+                <input id="formInputSecondName" class="form-control" name="SecondName" type="text" placeholder="Введите фамилию" value="@Model.SecondName">
+                <span asp-validation-for="SecondName"></span>
+            </div>
+
+            <div class="width-100"></div>
+            <div class="mb-3 col-12 col-md-4">
+                <label for="formInputFirstName" class="form-label">Имя</label>
+                <input id="formInputFirstName" class="form-control" name="FirstName" type="text" placeholder="Введите имя" value="@Model.FirstName">
+                <span asp-validation-for="FirstName"></span>
+            </div>
+
+            <div class="width-100"></div>
+
+            <div class="mb-3 col-12 col-md-4">
+                <label for="formInputLastName" class="form-label">Отчество</label>
+                <input id="formInputLastName" class="form-control" name="LastName" type="text" placeholder="Введите отчество" value="@Model.LastName">
+                <div id="lastNameHelp" class="form-text">Не обязательно</div>
+            </div>
+
+            <div class="width-100"></div>
+
+            <div class="mb-3 col-12 col-md-4">
+                <label for="formInputPassword" class="form-label">Пароль</label>
+                <input id="formInputPassword" class="form-control" name="password" type="password" placeholder="Введите пароль">
+                <span asp-validation-for="Password"></span>
+            </div>
+
+            <div class="width-100"></div>
+
+            <div class="mb-3 col-12 col-md-4">
+                <label for="formInputPasswordReenter" class="form-label">Повторите пароль</label>
+                <input id="formInputPasswordReenter" class="form-control" type="password" placeholder="Повторите пароль">
+                <span asp-validation-for="Password"></span>
+            </div>
+
+            <div class="width-100"></div>
+
+            <div class="mb-3 col-12 col-md-4">
+                <button type="submit" class="btn btn-secondary">Зарегистрироваться</button>
+                <a href="/login">Войти</a>
+            </div>
     </form>
 </div>
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

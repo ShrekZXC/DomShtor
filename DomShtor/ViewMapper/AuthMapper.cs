@@ -10,7 +10,10 @@ public class AuthMapper
         return new UserModel()
         {
             Email = model.Email!,
-            Password = model.Password!
+            Password = model.Password!,
+            FirstName = model.FirstName!,
+            SecondName = model.SecondName!,
+            LastName = model.LastName!
         };
     }
 }
