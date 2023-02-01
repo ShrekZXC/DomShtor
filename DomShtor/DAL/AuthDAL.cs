@@ -11,12 +11,13 @@ namespace DomShtor.DAL
         {
             using (var connection = new MySqlConnection(DbHelper.ConnString))
             {
-                connection.Open();
+                await connection.OpenAsync();
                 
                 return await connection.QueryFirstOrDefaultAsync<UserModel>($@"
                         select UserId, Email, Password, Salt, Status 
                         from appuser 
-                        where Email = @Email, new {{Email = Email}}")??new UserModel();
+                        where Email = @email",
+                        new {email = email})??new UserModel();
             }
         }
 
@@ -24,12 +25,13 @@ namespace DomShtor.DAL
         {
             using (var connection = new MySqlConnection(DbHelper.ConnString))
             {
-                connection.Open();
+                await connection.OpenAsync();
                 
                 return await connection.QueryFirstOrDefaultAsync<UserModel>($@"
                         select UserId, Email, Password, Salt, Status 
                         from appuser 
-                        where UserId = @id, new {{id = id}}")??new UserModel();
+                        where UserId = @id",
+                        new {id = id})??new UserModel();
             }
         }
 
@@ -37,7 +39,7 @@ namespace DomShtor.DAL
         {
             using (var connection = new MySqlConnection(DbHelper.ConnString))
             {
-                connection.Open();
+                await connection.OpenAsync();
                 string sql = @"insert into appuser(Email, Password, Salt, Status)
                              values(@Email, @Password, @Salt, @Status)";
                 return await connection.ExecuteAsync(sql, model);

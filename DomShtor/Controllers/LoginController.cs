@@ -5,31 +5,32 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DomShtor.Controllers;
 
-public class RegisterController : Controller
+public class LoginController: Controller
 {
     private readonly IAuthBL _authBL;
 
-    public RegisterController(IAuthBL authBl)
+    public LoginController(IAuthBL authBl)
     {
         _authBL = authBl;
     }
-
+    
     [HttpGet]
-    [Route("/register")]
+    [Route("/login")]
     public IActionResult Index()
     {
-        return View("Index", new RegisterViewModel());
+        return View("Index", new LoginViewModel());
     }
     
     [HttpPost]
-    [Route("/register")]
-    public async Task<IActionResult> IndexSave(RegisterViewModel model)
+    [Route("/login")]
+    public async Task<IActionResult> IndexSave(LoginViewModel model)
     {
         if (ModelState.IsValid)
         {
-            await _authBL.CreateUser(AuthMapper.MapRegisterViewModelToUserModel(model));
+            await _authBL.Authenticate(model.Email!, model.Password!, model.RememberMe == true);
             return Redirect("/");
         }
         return View("Index", model);
     }
+    
 }

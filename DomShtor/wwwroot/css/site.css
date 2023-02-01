@@ -20,3 +20,29 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*FORMS*/
+.reg-form h2
+{
+  text-align: center;
+  margin: 30px;
+}
+
+.reg-form input
+{
+  height: 3.3rem;
+}
+
+.reg-form a{
+  font-size: 1.2em;
+  transition: all .3s;
+  color: #5c5b5b;
+  text-decoration: none;
+  margin-left: 60px;
+}
+
+.reg-form a:hover
+{
+  margin-left: 55px;
+  transition: all .3s;
+}
