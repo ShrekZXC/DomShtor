@@ -28,6 +28,18 @@ public class AuthBL: IAuthBL
         return id;
     }
 
+    public async Task<int> Authenticate(string email, string password, bool rememberMe)
+    {
+        var user = await _authDal.GetUser(email);
+        if(user.Password == _encrypt.HashPassword(password, user.Salt))
+        {
+            Login(user.UserId ?? 0);
+            return user.UserId ?? 0;
+        }
+
+        return 0;
+    }
+
     public void Login(int id)
     {
         _httpContextAccessor.HttpContext?.Session.SetInt32(AuthConstants.AUTH_SESSION_PARAM_NAME, id);
