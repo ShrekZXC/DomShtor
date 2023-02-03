@@ -27,8 +27,11 @@ public class RegisterController : Controller
     {
         if (ModelState.IsValid)
         {
-            await _authBL.CreateUser(AuthMapper.MapRegisterViewModelToUserModel(model));
-            return Redirect("/");
+            if (model.Password == model.ReenterPassword)
+            {
+                await _authBL.CreateUser(AuthMapper.MapRegisterViewModelToUserModel(model));
+                return Redirect("/");
+            }
         }
         return View("Index", model);
     }

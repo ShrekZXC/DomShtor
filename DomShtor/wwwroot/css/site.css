@@ -41,8 +41,14 @@ body {
   margin-left: 60px;
 }
 
-.reg-form a:hover
-{
+.reg-form a:hover {
   margin-left: 55px;
   transition: all .3s;
 }
+
+.field-validation-error
+{
+  color: red;
+}
+
+
