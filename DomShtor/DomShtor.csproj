@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <Folder Include="App_Start" />
-      <Folder Include="BL\Security" />
       <Folder Include="Models\Repository" />
       <Folder Include="wwwroot\fonts" />
     </ItemGroup>

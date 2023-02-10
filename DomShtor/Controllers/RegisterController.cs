@@ -2,6 +2,7 @@
 using DomShtor.ViewMapper;
 using DomShtor.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using MySqlX.XDevAPI.Common;
 
 namespace DomShtor.Controllers;
 
@@ -20,19 +21,31 @@ public class RegisterController : Controller
     {
         return View("Index", new RegisterViewModel());
     }
-    
+
     [HttpPost]
     [Route("/register")]
     public async Task<IActionResult> IndexSave(RegisterViewModel model)
     {
         if (ModelState.IsValid)
         {
-            if (model.Password == model.ReenterPassword)
-            {
-                await _authBL.CreateUser(AuthMapper.MapRegisterViewModelToUserModel(model));
-                return Redirect("/");
-            }
+            var errorModel = await _authBL.ValidateEmail(model.Email);
+            if (errorModel != null)
+                ModelState.TryAddModelError("Email", errorModel.ErrorMessage);
         }
+
+        if (ModelState.IsValid)
+        {
+            var errorModel = await _authBL.ValidatePassword(model.Password, model.ReenterPassword);
+            if (errorModel != null)
+                ModelState.TryAddModelError("ReenterPassword", errorModel.ErrorMessage);
+        }
+
+        if (ModelState.IsValid)
+        {
+            await _authBL.CreateUser(AuthMapper.MapRegisterViewModelToUserModel(model));
+            return Redirect("/");
+        }
+        
         return View("Index", model);
     }
 }
