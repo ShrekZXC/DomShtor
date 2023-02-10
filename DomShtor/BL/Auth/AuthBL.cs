@@ -1,4 +1,5 @@
-﻿using DomShtor.DAL.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using DomShtor.DAL.Models;
 using DomShtor.DAL;
 
 namespace DomShtor.BL.Auth;
@@ -38,6 +39,21 @@ public class AuthBL: IAuthBL
         }
 
         return 0;
+    }
+
+    public async Task<ValidationResult> ValidateEmail(string email)
+    {
+        var user = await _authDal.GetUser(email);
+        if (user.UserId != null)
+            return new ValidationResult("Email занят");
+        return null;
+    }
+
+    public async Task<ValidationResult> ValidatePassword(string password, string reenterPassword)
+    {
+        if (password != reenterPassword)
+            return new ValidationResult("Пароли должны совпадать");
+        return null;
     }
 
     public void Login(int id)

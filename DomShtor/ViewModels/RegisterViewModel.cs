@@ -15,7 +15,7 @@ public class RegisterViewModel
     }
     
     [Required(ErrorMessage = "Укажите почту")]
-    [EmailAddress(ErrorMessage = "Неверный аддрес")]
+    [EmailAddress(ErrorMessage = "Неверный формат почты")]
     public string Email { get; set; }
     
     [Required(ErrorMessage = "Укажите имя")]
