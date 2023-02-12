@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using DomShtor.DAL.Models;
 using DomShtor.DAL;
+using Microsoft.AspNetCore.Identity;
 
 namespace DomShtor.BL.Auth;
 
@@ -54,6 +55,15 @@ public class AuthBL: IAuthBL
         if (password != reenterPassword)
             return new ValidationResult("Пароли должны совпадать");
         return null;
+    }
+
+    public async Task<string> ForgotPassword(string email)
+    {
+        var user = await _authDal.GetUser(email);
+        if (user != null)
+        {
+            var token = await 
+        }
     }
 
     public void Login(int id)
