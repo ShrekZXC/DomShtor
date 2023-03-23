@@ -1,5 +1,4 @@
 ﻿using DomShtor.BL.Auth;
-using DomShtor.ViewMapper;
 using DomShtor.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,8 +26,15 @@ public class LoginController: Controller
     {
         if (ModelState.IsValid)
         {
-            await _authBL.Authenticate(model.Email!, model.Password!, model.RememberMe == true);
-            return Redirect("/");
+            try
+            {
+                await _authBL.Authenticate(model.Email!, model.Password!, model.RememberMe == true);
+                return Redirect("/");
+            }
+            catch (DomShtor.BL.AuthorizationException e)
+            {
+                ModelState.AddModelError("Email", "Имя или Email неверные");
+            }
         }
         return View("Index", model);
     }

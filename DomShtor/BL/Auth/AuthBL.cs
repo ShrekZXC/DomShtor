@@ -32,13 +32,14 @@ public class AuthBL: IAuthBL
     public async Task<int> Authenticate(string email, string password, bool rememberMe)
     {
         var user = await _authDal.GetUser(email);
-        if(user.Password == _encrypt.HashPassword(password, user.Salt))
+        
+        if (user.UserId != null && user.Password == _encrypt.HashPassword(password, user.Salt))
         {
             Login(user.UserId ?? 0);
             return user.UserId ?? 0;
         }
 
-        return 0;
+        throw new AuthorizationException("Not Found");
     }
 
     public async Task<ValidationResult> ValidateEmail(string email)
