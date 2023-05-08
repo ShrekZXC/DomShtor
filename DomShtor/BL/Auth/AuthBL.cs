@@ -9,15 +9,18 @@ public class AuthBL: IAuthBL
     private readonly IAuthDAL _authDal;
     private readonly IEncrypt _encrypt;
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IDbSession _dbSession;
     
     public AuthBL(IAuthDAL authDal, 
         IEncrypt encrypt, 
-        IHttpContextAccessor httpContextAccessor
+        IHttpContextAccessor httpContextAccessor,
+        IDbSession dbSession
         )
     {
         _authDal = authDal;
         _encrypt = encrypt;
         _httpContextAccessor = httpContextAccessor;
+        _dbSession = dbSession;
     }
 
     public async Task<int> CreateUser(UserModel userModel)
@@ -35,7 +38,7 @@ public class AuthBL: IAuthBL
         
         if (user.UserId != null && user.Password == _encrypt.HashPassword(password, user.Salt))
         {
-            Login(user.UserId ?? 0);
+            await Login(user.UserId ?? 0);
             return user.UserId ?? 0;
         }
 
@@ -57,8 +60,8 @@ public class AuthBL: IAuthBL
         return null;
     }
 
-    public void Login(int id)
+    public async Task Login(int id)
     {
-        _httpContextAccessor.HttpContext?.Session.SetInt32(AuthConstants.AUTH_SESSION_PARAM_NAME, id);
+        await _dbSession.SetUserId(id);
     }
 }

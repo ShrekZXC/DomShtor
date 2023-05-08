@@ -41,8 +41,9 @@ namespace DomShtor.DAL
             {
                 await connection.OpenAsync();
                 string sql = @"insert into appuser(Email, Password, Salt, FirstName, SecondName, LastName, Status)
-                             values(@Email, @Password, @Salt, @FirstName, @SecondName, @LastName, @Status)";
-                return await connection.ExecuteAsync(sql, model);
+                             values(@Email, @Password, @Salt, @FirstName, @SecondName, @LastName, @Status);
+                select LAST_INSERT_ID();";
+                return await connection.ExecuteScalarAsync<int>(sql, model);
             }
         }
     }
