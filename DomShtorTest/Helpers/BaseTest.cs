@@ -1,4 +1,5 @@
 ﻿using DomShtor.BL.Auth;
+using DomShtor.BL.General;
 using DomShtor.DAL;
 using Microsoft.AspNetCore.Http;
 
@@ -12,10 +13,12 @@ public class BaseTest
     protected IAuth Auth;
     protected IDbSessionDAL _dbSessionDal = new DbSessionDAL();
     protected IDbSession _dbSession;
+    protected IWebCoookie _webCoookie;
 
     public BaseTest()
     {
-        _dbSession = new DbSession(_dbSessionDal, _httpContextAccessor);
+        _webCoookie = new TestCookie();
+        _dbSession = new DbSession(_dbSessionDal, _webCoookie);
         Auth = new Auth(_authDal, _encrypt, _httpContextAccessor, _dbSession);
     }
     
