@@ -4,7 +4,7 @@ namespace DomShtorTest.Helpers;
 
 static public class Helper
 {
-    static public TransactionScope CreateTransactionScope(int seconds = 1)
+    static public TransactionScope CreateTransactionScope(int seconds = 999999)
     {
         return new TransactionScope(
             TransactionScopeOption.Required,
