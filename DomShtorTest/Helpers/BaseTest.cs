@@ -10,10 +10,13 @@ public class BaseTest
     protected IEncrypt _encrypt = new Encrypt();
     protected IHttpContextAccessor _httpContextAccessor = new HttpContextAccessor();
     protected IAuthBL _authBl;
+    protected IDbSessionDAL _dbSessionDal = new DbSessionDAL();
+    protected IDbSession _dbSession;
 
     public BaseTest()
     {
-        _authBl = new AuthBL(_authDal, _encrypt, _httpContextAccessor);
+        _dbSession = new DbSession(_dbSessionDal, _httpContextAccessor);
+        _authBl = new AuthBL(_authDal, _encrypt, _httpContextAccessor, _dbSession);
     }
     
 }

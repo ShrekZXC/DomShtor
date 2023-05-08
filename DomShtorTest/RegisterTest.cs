@@ -18,7 +18,7 @@ public class RegisterTest: Helpers.BaseTest
     {
         using (TransactionScope scope = Helper.CreateTransactionScope())
         {
-            string email = Guid.NewGuid().ToString() + "@test.com";
+            string email = Guid.NewGuid() + "@test.com";
 
             // validate: should not be in the DB
             var emailValidationResult = await _authBl.ValidateEmail(email);
@@ -36,11 +36,21 @@ public class RegisterTest: Helpers.BaseTest
                 });
             
             Assert.Greater(userId, 0);
+
+            var userDalResult = await _authDal.GetUser(userId);
+            Assert.That(email, Is.EqualTo(userDalResult.Email));
+            Assert.NotNull(userDalResult.Salt);
             
-            // validate: should be in the DB
+            var userByEmailDalResult = await _authDal.GetUser(email);
+            Assert.That(email, Is.EqualTo(userByEmailDalResult.Email));
+            Assert.NotNull(userByEmailDalResult.Salt);
+            
             emailValidationResult = await _authBl.ValidateEmail(email);
             Assert.IsNotNull(emailValidationResult);
-            
+
+            string encPassword = _encrypt.HashPassword("qwer1234", userByEmailDalResult.Salt);
+            Assert.That(encPassword, Is.EqualTo(userByEmailDalResult.Password));
+
         }
     }
 }
