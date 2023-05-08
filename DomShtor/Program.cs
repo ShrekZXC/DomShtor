@@ -10,6 +10,8 @@ builder.Services.AddScoped<DomShtor.BL.Auth.ICurrentUser, DomShtor.BL.Auth.Curre
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddSingleton<DomShtor.DAL.IDbSessionDAL, DomShtor.DAL.DbSessionDAL>();
 builder.Services.AddScoped<DomShtor.BL.Auth.IDbSession, DomShtor.BL.Auth.DbSession>();
+builder.Services.AddScoped<DomShtor.BL.General.IWebCoookie, DomShtor.BL.General.WebCookie>();
+
 
 builder.Services.AddMvc();
 
