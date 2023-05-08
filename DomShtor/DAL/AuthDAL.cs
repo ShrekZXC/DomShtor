@@ -9,42 +9,34 @@ namespace DomShtor.DAL
     {
         public async Task<UserModel> GetUser(string email)
         {
-            using (var connection = new MySqlConnection(DbHelper.ConnString))
-            {
-                await connection.OpenAsync();
-                
-                return await connection.QueryFirstOrDefaultAsync<UserModel>($@"
+            var result = await DbHelper.QueryAsync<UserModel>($@"
                         select UserId, Email, Password, Salt, Status 
                         from appuser 
                         where Email = @email",
-                        new {email = email})??new UserModel();
-            }
+                        new {email = email});
+                return result.FirstOrDefault() ?? new UserModel();
         }
 
         public async Task<UserModel> GetUser(int id)
         {
             using (var connection = new MySqlConnection(DbHelper.ConnString))
             {
-                await connection.OpenAsync();
-                
-                return await connection.QueryFirstOrDefaultAsync<UserModel>($@"
+                var result = await DbHelper.QueryAsync<UserModel>($@"
                         select UserId, Email, Password, Salt, Status 
                         from appuser 
                         where UserId = @id",
-                        new {id = id})??new UserModel();
+                        new {id = id});
+                    return result.FirstOrDefault() ?? new UserModel();
             }
         }
 
         public async Task<int> CreateUser(UserModel model)
         {
-            using (var connection = new MySqlConnection(DbHelper.ConnString))
-            {
-                await connection.OpenAsync();
-                string sql = @"insert into appuser(Email, Password, Salt, FirstName, SecondName, LastName, Status)
+            string sql = @"insert into appuser(Email, Password, Salt, FirstName, SecondName, LastName, Status)
                              values(@Email, @Password, @Salt, @FirstName, @SecondName, @LastName, @Status);
                 select LAST_INSERT_ID();";
-                return await connection.ExecuteScalarAsync<int>(sql, model);
-            }
+            var result = await DbHelper.QueryAsync<int>(sql, model);
+            return result.First();
         }
     }
 }

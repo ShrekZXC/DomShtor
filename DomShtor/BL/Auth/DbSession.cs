@@ -1,26 +1,23 @@
-﻿using DomShtor.DAL;
+﻿using DomShtor.BL.General;
+using DomShtor.DAL;
 using DomShtor.Models;
 
 namespace DomShtor.BL.Auth;
 
 public class DbSession: IDbSession
 {
-    private IDbSessionDAL _sessionDal;
-    private IHttpContextAccessor _httpContextAccessor;
+    private readonly IDbSessionDAL _sessionDal;
+    private readonly IWebCoookie _webCoookie;
 
-    public DbSession(IDbSessionDAL sessionDal, IHttpContextAccessor httpContextAccessor)
+    public DbSession(IDbSessionDAL sessionDal, IWebCoookie webCoookie)
     {
         _sessionDal = sessionDal;
-        _httpContextAccessor = httpContextAccessor;
+        _webCoookie = webCoookie;
     }
     private void CreateSessionCookie(Guid sessionId)
     {
-        CookieOptions options = new CookieOptions();
-        options.Path = "/";
-        options.HttpOnly = true;
-        options.Secure = true;
-        _httpContextAccessor?.HttpContext?.Response.Cookies.Delete(AuthConstants.SessionCookieName);
-        _httpContextAccessor?.HttpContext?.Response.Cookies.Append(AuthConstants.SessionCookieName, sessionId.ToString(), options);
+        _webCoookie.Delete(AuthConstants.SessionCookieName);
+        _webCoookie.AddSecure(AuthConstants.SessionCookieName, sessionId.ToString());
     }
 
     private async Task<SessionModel> CreateSession()
@@ -36,15 +33,15 @@ public class DbSession: IDbSession
     }
 
     private SessionModel? sessionModel = null;
-
     public async Task<SessionModel> GetSession()
     {
         if (sessionModel != null)
             return sessionModel;
+        
         Guid sessionId;
-        var cookie = _httpContextAccessor?.HttpContext?.Request?.Cookies.FirstOrDefault(m=>m.Key == AuthConstants.SessionCookieName);
-        if (cookie != null && cookie.Value.Value != null)
-            sessionId = Guid.Parse(cookie.Value.Value);
+        var sessionString = _webCoookie.Get(AuthConstants.SessionCookieName);
+        if (sessionString != null)
+            sessionId = Guid.Parse(sessionString);
         else
             sessionId = Guid.NewGuid();
         
