@@ -1,0 +1,29 @@
+﻿@model ProfileViewModel
+
+@{
+    ViewData["Title"] = "Профиль";
+}
+
+
+<div class="container profile-form">
+    <form class="row justify-content-center col-12" method="post" action="/profile" enctype="multipart/form-data">
+
+        <div class="mb-3 col-12 col-md-4">
+            <label for="formInputEmail" class="form-label">Email</label>
+            <input id="formInputEmail" class="form-control" name="Email" type="text" aria-describedby="emailHelp" placeholder="Введите почту" value="@Model.Email">
+            <span asp-validation-for="Email"></span>
+        </div>
+        
+                <div class="width-100"></div>
+
+        <div class="mb-3 col-12 col-md-4">
+            <label for="forInputFile" class="form-label"></label>
+            <input id="forInputFile"  type="file" name="file">
+        </div>
+
+        <div class="mb-3 col-12 col-md-4">
+            <button type="submit" class="btn btn-secondary">Сохранить</button>
+        </div>
+
+    </form>
+</div>
