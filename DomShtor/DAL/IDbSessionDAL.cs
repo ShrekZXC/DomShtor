@@ -4,9 +4,10 @@ namespace DomShtor.DAL;
 
 public interface IDbSessionDAL
 {
-    Task<SessionModel?> GetSession(Guid sessionId);
+    Task<SessionModel?> Get(Guid sessionId);
+    Task Lock(Guid sessionId);
 
-    Task<int> UpdateSession(SessionModel model);
+    Task<int> Update(SessionModel model);
 
-    Task<int> CreateSession(SessionModel model);
+    Task<int> Create(SessionModel model);
 }

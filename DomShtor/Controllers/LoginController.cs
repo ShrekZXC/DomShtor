@@ -6,11 +6,11 @@ namespace DomShtor.Controllers;
 
 public class LoginController: Controller
 {
-    private readonly IAuthBL _authBL;
+    private readonly IAuth _auth;
 
-    public LoginController(IAuthBL authBl)
+    public LoginController(IAuth auth)
     {
-        _authBL = authBl;
+        _auth = auth;
     }
     
     [HttpGet]
@@ -28,7 +28,7 @@ public class LoginController: Controller
         {
             try
             {
-                await _authBL.Authenticate(model.Email!, model.Password!, model.RememberMe == true);
+                await _auth.Authenticate(model.Email!, model.Password!, model.RememberMe == true);
                 return Redirect("/");
             }
             catch (DomShtor.BL.AuthorizationException e)

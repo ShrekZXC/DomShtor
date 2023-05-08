@@ -1,6 +1,7 @@
 using System.Transactions;
 using DomShtorTest.Helpers;
 using System.Transactions;
+using DomShtor.BL;
 using DomShtor.DAL.Models;
 
 
@@ -21,11 +22,10 @@ public class RegisterTest: Helpers.BaseTest
             string email = Guid.NewGuid() + "@test.com";
 
             // validate: should not be in the DB
-            var emailValidationResult = await _authBl.ValidateEmail(email);
-            Assert.IsNull(emailValidationResult);
+            await Auth.ValidateEmail(email);
 
             // create user
-            int userId = await _authBl.CreateUser(
+            int userId = await Auth.CreateUser(
                 new UserModel()
                 {
                     Email = email,
@@ -45,8 +45,7 @@ public class RegisterTest: Helpers.BaseTest
             Assert.That(email, Is.EqualTo(userByEmailDalResult.Email));
             Assert.NotNull(userByEmailDalResult.Salt);
             
-            emailValidationResult = await _authBl.ValidateEmail(email);
-            Assert.IsNotNull(emailValidationResult);
+            Assert.Throws<DuplicateEmailException>(delegate { Auth.ValidateEmail(email).GetAwaiter().GetResult(); });
 
             string encPassword = _encrypt.HashPassword("qwer1234", userByEmailDalResult.Salt);
             Assert.That(encPassword, Is.EqualTo(userByEmailDalResult.Password));

@@ -23,7 +23,7 @@ public class AuthTest : Helpers.BaseTest
             string email = Guid.NewGuid().ToString() + "@test.com";
 
             // create user
-            int userId = await _authBl.CreateUser(
+            int userId = await Auth.CreateUser(
                 new UserModel()
                 {
                     Email = email,
@@ -35,20 +35,20 @@ public class AuthTest : Helpers.BaseTest
 
             Assert.Throws<AuthorizationException>(delegate
             {
-                _authBl.Authenticate("werewr", "1111", false).GetAwaiter().GetResult();
+                Auth.Authenticate("werewr", "1111", false).GetAwaiter().GetResult();
             });
 
             Assert.Throws<AuthorizationException>(delegate
             {
-                _authBl.Authenticate(email, "1111", false).GetAwaiter().GetResult();
+                Auth.Authenticate(email, "1111", false).GetAwaiter().GetResult();
             });
 
             Assert.Throws<AuthorizationException>(delegate
             {
-                _authBl.Authenticate("werewr", "qwer1234", false).GetAwaiter().GetResult();
+                Auth.Authenticate("werewr", "qwer1234", false).GetAwaiter().GetResult();
             });
 
-            await _authBl.Authenticate(email, "qwer1234", false);
+            await Auth.Authenticate(email, "qwer1234", false);
         }
     }
 }

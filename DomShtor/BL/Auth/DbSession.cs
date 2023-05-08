@@ -31,7 +31,7 @@ public class DbSession: IDbSession
             Created = DateTime.Now,
             LastAccessed = DateTime.Now
         };
-        await _sessionDal.CreateSession(data);
+        await _sessionDal.Create(data);
         return data;
     }
 
@@ -48,7 +48,7 @@ public class DbSession: IDbSession
         else
             sessionId = Guid.NewGuid();
         
-        var data = await this._sessionDal.GetSession(sessionId);
+        var data = await this._sessionDal.Get(sessionId);
         if (data == null)
         {
             data = await this.CreateSession();
@@ -66,7 +66,7 @@ public class DbSession: IDbSession
         data.UserId = userId;
         data.DbSessionId = Guid.NewGuid();
         CreateSessionCookie(data.DbSessionId);
-        return await _sessionDal.CreateSession(data);
+        return await _sessionDal.Create(data);
     }
 
     public async Task<int?> GetUserId()
@@ -79,5 +79,11 @@ public class DbSession: IDbSession
     {
         var data = await this.GetSession();
         return data.UserId != null;
+    }
+
+    public async Task Lock()
+    {
+        var data = await this.GetSession();
+        await _sessionDal.Lock(data.DbSessionId);
     }
 }

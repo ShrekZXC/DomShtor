@@ -11,6 +11,7 @@ public class AuthMapper
         {
             Email = model.Email!,
             Password = model.Password!,
+            ReenterPassword = model.ReenterPassword,
             FirstName = model.FirstName!,
             SecondName = model.SecondName!,
             LastName = model.LastName!

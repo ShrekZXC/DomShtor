@@ -3,7 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<DomShtor.BL.Auth.IAuthBL, DomShtor.BL.Auth.AuthBL>();
+builder.Services.AddScoped<DomShtor.BL.Auth.IAuth, DomShtor.BL.Auth.Auth>();
 builder.Services.AddSingleton<DomShtor.DAL.IAuthDAL, DomShtor.DAL.AuthDAL>();
 builder.Services.AddSingleton<DomShtor.BL.Auth.IEncrypt, DomShtor.BL.Auth.Encrypt>();
 builder.Services.AddScoped<DomShtor.BL.Auth.ICurrentUser, DomShtor.BL.Auth.CurrentUser>();
