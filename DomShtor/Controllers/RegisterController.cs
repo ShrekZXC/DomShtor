@@ -1,4 +1,5 @@
-﻿using DomShtor.BL.Auth;
+﻿using DomShtor.BL;
+using DomShtor.BL.Auth;
 using DomShtor.ViewMapper;
 using DomShtor.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -8,11 +9,11 @@ namespace DomShtor.Controllers;
 
 public class RegisterController : Controller
 {
-    private readonly IAuthBL _authBL;
+    private readonly IAuth _auth;
 
-    public RegisterController(IAuthBL authBl)
+    public RegisterController(IAuth auth)
     {
-        _authBL = authBl;
+        _auth = auth;
     }
 
     [HttpGet]
@@ -28,22 +29,19 @@ public class RegisterController : Controller
     {
         if (ModelState.IsValid)
         {
-            var errorModel = await _authBL.ValidateEmail(model.Email);
-            if (errorModel != null)
-                ModelState.TryAddModelError("Email", errorModel.ErrorMessage);
-        }
-
-        if (ModelState.IsValid)
-        {
-            var errorModel = await _authBL.ValidatePassword(model.Password, model.ReenterPassword);
-            if (errorModel != null)
-                ModelState.TryAddModelError("ReenterPassword", errorModel.ErrorMessage);
-        }
-
-        if (ModelState.IsValid)
-        {
-            await _authBL.CreateUser(AuthMapper.MapRegisterViewModelToUserModel(model));
-            return Redirect("/");
+            try
+            {
+                await _auth.Register(AuthMapper.MapRegisterViewModelToUserModel(model));
+                return Redirect("/");
+            }
+            catch (DuplicateEmailException)
+            {
+                ModelState.TryAddModelError("Email", "Email уже существует");
+            }
+            catch (MismatchedPasswordException)
+            {
+                ModelState.TryAddModelError("password", "Пароли должны совпадать");
+            }
         }
         
         return View("Index", model);

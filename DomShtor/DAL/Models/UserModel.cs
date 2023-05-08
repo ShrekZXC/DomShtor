@@ -11,6 +11,8 @@ public class UserModel
     public string SecondName { get; set; } = null!;
     public string LastName { get; set; } = null!;
     public string Password { get; set; } = null!;
+
+    public string ReenterPassword { get; set; } = null!;
     public string Salt { get; set; } = null!;
 
     public int Status { get; set; } = 0;
