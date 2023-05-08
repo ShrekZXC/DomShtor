@@ -1,54 +1,107 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 /*FORMS*/
-.reg-form h2
+.reg-form h2 {
+    text-align: center;
+    margin: 30px;
+}
+
+.reg-form input {
+    height: 3.3rem;
+}
+
+@media screen and (min-width: 0px){
+    .reg-form a {
+        font-size: 1.2em;
+        color: #5c5b5b;
+        text-decoration: none;
+        float: right;
+    }
+}
+
+
+@media screen and (min-width: 768px){
+    .reg-form a {
+        font-size: 1.2em;
+        transition: all .3s;
+        color: #5c5b5b;
+        text-decoration: none;
+        margin-left: 170px;
+    }
+
+    .reg-form a:hover {
+        margin-left: 165px;
+        transition: all .3s;
+    }
+}
+
+@media screen and (min-width: 992px){
+    .reg-form a {
+        font-size: 1.2em;
+        transition: all .3s;
+        color: #5c5b5b;
+        text-decoration: none;
+        margin-left: 175px;
+    }
+
+    .reg-form a:hover {
+        margin-left: 165px;
+        transition: all .3s;
+    }
+}
+
+@media screen and (min-width: 1400px){
+    .reg-form a {
+        font-size: 1.2em;
+        transition: all .3s;
+        color: #5c5b5b;
+        text-decoration: none;
+        margin-left: 250px;
+    }
+
+    .reg-form a:hover {
+        margin-left: 245px;
+        transition: all .3s;
+    }
+}
+
+
+.field-validation-error {
+    color: red;
+}
+
+.checkbox
 {
-  text-align: center;
-  margin: 30px;
+    height: auto!important;
+    width: auto; 
+    vertical-align: middle
 }
 
-.reg-form input
+.label-checkbox
 {
-  height: 3.3rem;
-}
-
-.reg-form a{
-  font-size: 1.2em;
-  transition: all .3s;
-  color: #5c5b5b;
-  text-decoration: none;
-  margin-left: 60px;
-}
-
-.reg-form a:hover {
-  margin-left: 55px;
-  transition: all .3s;
-}
-
-.field-validation-error
-{
-  color: red;
+    width: auto; 
+    vertical-align: middle
 }
 
 
