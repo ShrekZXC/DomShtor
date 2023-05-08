@@ -29,7 +29,10 @@ public class RegisterTest: Helpers.BaseTest
                 new UserModel()
                 {
                     Email = email,
-                    Password = "qwer1234"
+                    Password = "qwer1234",
+                    FirstName = "Name",
+                    SecondName = "SecondName",
+                    LastName = "LastName"
                 });
             
             Assert.Greater(userId, 0);
