@@ -12,6 +12,14 @@ public static class Helpers
         return def;
     }
     
+    public static Guid? StringToGuidDef(string str)
+    {
+        Guid value;
+        if (Guid.TryParse(str, out value))
+            return value;
+        return null;
+    }
+    
     // Когда дебажим добавить времени, иначе сессия умрет
     static public TransactionScope CreateTransactionScope(int seconds = 60)
     {

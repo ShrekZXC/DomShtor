@@ -9,19 +9,22 @@ public class Auth: IAuth
 {
     private readonly IAuthDAL _authDal;
     private readonly IEncrypt _encrypt;
-    private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IDbSession _dbSession;
+    private readonly IWebCoookie _webCoookie;
+    private readonly IUserTokenDAL _userTokenDal;
     
     public Auth(IAuthDAL authDal, 
-        IEncrypt encrypt, 
-        IHttpContextAccessor httpContextAccessor,
-        IDbSession dbSession
-        )
+        IEncrypt encrypt,
+        IDbSession dbSession,
+        IWebCoookie webCoookie,
+        IUserTokenDAL userTokenDal
+    )
     {
         _authDal = authDal;
         _encrypt = encrypt;
-        _httpContextAccessor = httpContextAccessor;
         _dbSession = dbSession;
+        _webCoookie = webCoookie;
+        _userTokenDal = userTokenDal;
     }
 
     public async Task<int> Authenticate(string email, string password, bool rememberMe)
@@ -31,6 +34,12 @@ public class Auth: IAuth
         if (user.UserId != null && user.Password == _encrypt.HashPassword(password, user.Salt))
         {
             await Login(user.UserId ?? 0);
+
+            if (rememberMe)
+            {
+                Guid tokenId = await _userTokenDal.Create(user.UserId ?? 0);
+                _webCoookie.AddSecure(AuthConstants.RememberMeCookieName, tokenId.ToString(), 30);
+            }
             return user.UserId ?? 0;
         }
 
