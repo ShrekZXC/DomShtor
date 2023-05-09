@@ -14,12 +14,14 @@ public class BaseTest
     protected IDbSession _dbSession;
     protected IWebCoookie _webCoookie;
     protected IUserTokenDAL _userTokenDal = new UserTokenDalDal();
+    protected CurrentUser currentUser;
 
     public BaseTest()
     {
         _webCoookie = new TestCookie();
         _dbSession = new DbSession(_dbSessionDal, _webCoookie);
         Auth = new Auth(_authDal, _encrypt ,_dbSession,_webCoookie, _userTokenDal);
+        currentUser = new CurrentUser(_dbSession, _webCoookie, _userTokenDal);
     }
     
 }

@@ -13,4 +13,5 @@ public interface IDbSession
     Task<bool> IsLoggedIn();
 
     Task Lock();
+    void ResetSessionСache();
 }
