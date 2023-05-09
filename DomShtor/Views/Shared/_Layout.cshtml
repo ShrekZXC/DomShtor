@@ -33,14 +33,7 @@
             </li>
         </ul>
 
-        <ul class="nav">
-            <li class="nav-item">
-                <a href="/login" class="nav-link link-dark px-2">Войти</a>
-            </li>
-            <li class="nav-item">
-                <a href="/register" class="nav-link link-dark px-2">Регистрация</a>
-            </li>
-        </ul>
+        @await Component.InvokeAsync("MainMenu")
     </div>
 </nav>
 

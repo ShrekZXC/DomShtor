@@ -18,8 +18,7 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var isLoggedIn = await _currentUser.IsLoggedIn();
-        return View(isLoggedIn);
+        return View();
     }
 
     public IActionResult Privacy()
