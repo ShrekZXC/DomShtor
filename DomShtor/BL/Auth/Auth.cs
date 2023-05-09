@@ -2,6 +2,7 @@
 using DomShtor.BL.General;
 using DomShtor.DAL.Models;
 using DomShtor.DAL;
+using DomShtor.ViewMapper;
 
 namespace DomShtor.BL.Auth;
 
@@ -12,12 +13,14 @@ public class Auth: IAuth
     private readonly IDbSession _dbSession;
     private readonly IWebCoookie _webCoookie;
     private readonly IUserTokenDAL _userTokenDal;
+    private readonly IProfileDAL _profileDal;
     
     public Auth(IAuthDAL authDal, 
         IEncrypt encrypt,
         IDbSession dbSession,
         IWebCoookie webCoookie,
-        IUserTokenDAL userTokenDal
+        IUserTokenDAL userTokenDal,
+        IProfileDAL profileDal
     )
     {
         _authDal = authDal;
@@ -25,6 +28,7 @@ public class Auth: IAuth
         _dbSession = dbSession;
         _webCoookie = webCoookie;
         _userTokenDal = userTokenDal;
+        _profileDal = profileDal;
     }
 
     public async Task<int> Authenticate(string email, string password, bool rememberMe)
@@ -51,6 +55,8 @@ public class Auth: IAuth
         userModel.Salt = Guid.NewGuid().ToString();
         userModel.Password = _encrypt.HashPassword(userModel.Password, userModel.Salt);
         int id = await _authDal.CreateUser(userModel);
+        userModel.UserId = id;
+        await _profileDal.Add(ProfileMapper.MapUserModelToProfileModel(userModel));
         Login(id);
         return id;
     }

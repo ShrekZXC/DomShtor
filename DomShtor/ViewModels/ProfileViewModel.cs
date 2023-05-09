@@ -13,4 +13,6 @@ public class ProfileViewModel
     public string? SecondName { get; set; }
     [Required]
     public string? LastName { get; set; }
+    
+    public string ProfileImage { get; set; }
 }

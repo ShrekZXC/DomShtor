@@ -23,7 +23,7 @@ public class BaseTest
     {
         _webCoookie = new TestCookie();
         _dbSession = new DbSession(_dbSessionDal, _webCoookie);
-        Auth = new Auth(_authDal, _encrypt ,_dbSession,_webCoookie, _userTokenDal);
+        Auth = new Auth(_authDal, _encrypt ,_dbSession,_webCoookie, _userTokenDal, _profileDal);
         currentUser = new CurrentUser(_dbSession, _webCoookie, _userTokenDal,_profileDal);
         _profile = new Profile(_profileDal);
     }
