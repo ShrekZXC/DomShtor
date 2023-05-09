@@ -7,7 +7,7 @@ public interface IDbSessionDAL
     Task<SessionModel?> Get(Guid sessionId);
     Task Lock(Guid sessionId);
 
-    Task<int> Update(SessionModel model);
+    Task Update(SessionModel model);
 
-    Task<int> Create(SessionModel model);
+    Task Create(SessionModel model);
 }

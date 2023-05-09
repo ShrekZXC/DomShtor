@@ -13,7 +13,7 @@ builder.Services.AddSingleton<DomShtor.BL.Auth.IEncrypt, DomShtor.BL.Auth.Encryp
 
 builder.Services.AddSingleton<DomShtor.DAL.IAuthDAL, DomShtor.DAL.AuthDAL>();
 builder.Services.AddSingleton<DomShtor.DAL.IDbSessionDAL, DomShtor.DAL.DbSessionDAL>();
-builder.Services.AddSingleton<DomShtor.DAL.IUserTokenDAL, DomShtor.DAL.UserTokenDalDal>();
+builder.Services.AddSingleton<DomShtor.DAL.IUserTokenDAL, DomShtor.DAL.UserTokenDal>();
 builder.Services.AddSingleton<DomShtor.DAL.IProfileDAL, DomShtor.DAL.ProfileDAL>();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

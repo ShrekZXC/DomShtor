@@ -35,8 +35,7 @@ namespace DomShtor.DAL
             string sql = @"insert into appuser(Email, Password, Salt, FirstName, SecondName, LastName, Status)
                              values(@Email, @Password, @Salt, @FirstName, @SecondName, @LastName, @Status);
                 select LAST_INSERT_ID();";
-            var result = await DbHelper.QueryAsync<int>(sql, model);
-            return result.First();
+            return await DbHelper.QueryScalarAsync<int>(sql, model);
         }
     }
 }

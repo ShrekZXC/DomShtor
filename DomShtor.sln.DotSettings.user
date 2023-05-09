@@ -1,9 +1,28 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/CodeInspection/PencilsConfiguration/ActualSeverity/@EntryValue">INFO</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4c44516f_002Db762_002D4c3a_002Da39d_002D178dff52de56/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="BaseRegistration" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2282e7a4_002Dcb07_002D4b95_002Da5c6_002Dbcf75fbec05e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="UpdateTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::AF42777C-E74F-40F5-8319-AC77EC625C5D::net7.0::DomShtorTest.ProfileTest.UpdateTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=47d9dce4_002D766b_002D483d_002Db13e_002Dfde6a000fd9d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="UpdateTest #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::AF42777C-E74F-40F5-8319-AC77EC625C5D::net7.0::DomShtorTest.ProfileTest.UpdateTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7c480a24_002Df4ff_002D42ee_002D97bf_002D0bd8ed4df72f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="UpdateTest #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::AF42777C-E74F-40F5-8319-AC77EC625C5D::net7.0::DomShtorTest.ProfileTest.UpdateTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=86ccacd9_002D443e_002D431e_002Db8d7_002D3e0be0ace321/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;DomShtorTest&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Project Location="C:\Users\dimab\RiderProjects\DomShtor\DomShtorTest" Presentation="&amp;lt;DomShtorTest&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9794e6a3_002D3466_002D4565_002Da4f0_002Dba0124b9b13c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BaseAuth" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="C:\Users\dimab\RiderProjects\DomShtor\DomShtorTest" Presentation="&amp;lt;DomShtorTest&amp;gt;" /&gt;&#xD;
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a13f05da_002D4ccd_002D4301_002D94b2_002D710f17bb38ba/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="UpdateTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::AF42777C-E74F-40F5-8319-AC77EC625C5D::net7.0::DomShtorTest.ProfileTest.UpdateTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	</wpf:ResourceDictionary>
