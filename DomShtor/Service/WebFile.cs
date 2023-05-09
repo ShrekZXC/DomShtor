@@ -6,11 +6,12 @@ namespace DomShtor.Service;
 
 public class WebFile
 {
+    private const string FOLDER_PREFIX = "./wwwroot";
 
     public string GetFileName(string fileName)
     {
         var dir = GetWebFileFolder(fileName);
-        CreateFolder(dir);
+        CreateFolder(FOLDER_PREFIX + dir);
         return dir + "/" + Path.GetFileNameWithoutExtension(fileName) + ".jpg";
     }
 
@@ -22,7 +23,7 @@ public class WebFile
 
         string hash = Convert.ToHexString(hashBytes);
         
-        return "./wwwroot/images/" + hash.Substring(0, 2) + "/" +
+        return "/images/" + hash.Substring(0, 2) + "/" +
                   hash.Substring(0, 4);
     }
 
@@ -48,7 +49,7 @@ public class WebFile
 
             image.Mutate(x=>x.Resize(aspectWidth, aspectHeight, KnownResamplers.Lanczos3));
             
-            await image.SaveAsync(fileName, new JpegEncoder() {Quality = 75});
+            await image.SaveAsync(FOLDER_PREFIX + fileName, new JpegEncoder() {Quality = 75});
         }
     }
 }

@@ -25,6 +25,19 @@ public class ProfileMapper
             Email = model.Email!,
             FirstName = model.FirstName!,
             SecondName = model.SecondName!,
+            LastName = model.LastName!,
+            ProfileImage = model.ProfileImage
+        };
+    }
+    
+    public static ProfileModel MapUserModelToProfileModel(UserModel model)
+    {
+        return new ProfileModel()
+        {
+            UserId = (int)model.UserId,
+            Email = model.Email!,
+            FirstName = model.FirstName!,
+            SecondName = model.SecondName!,
             LastName = model.LastName!
         };
     }

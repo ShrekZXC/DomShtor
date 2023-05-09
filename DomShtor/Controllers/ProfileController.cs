@@ -51,6 +51,29 @@ public class ProfileController : Controller
         {
             var profileModel = ProfileMapper.MapProfileViewModelToProfileModel(profileViewModel);
             profileModel.UserId = (int)userId;
+            await _profile.AddOrUpdate(profileModel);
+            return Redirect("/");
+        }
+
+        return View("Index", new ProfileViewModel());
+    }
+    
+    [HttpPost]
+    [Route(("/profile/uploadimage"))]
+    public async Task<IActionResult> IndexSave(int profileId)
+    {
+        var userId = await _currentUser.GetCurrentUserId();
+
+        if (userId == null)
+            throw new Exception("Пользователь не найден");
+
+        var profileModel = await _profile.GetByUserId((int)userId);
+        if (profileId != null && profileId != profileModel.ProfileId)
+            throw new Exception("Ошибка, разные id пользователей");
+
+        if (ModelState.IsValid)
+        {
+            profileModel.UserId = (int)userId;
             
             if (Request.Form.Files.Count>0 && Request.Form.Files[0] != null)
             {
@@ -58,11 +81,11 @@ public class ProfileController : Controller
                 var fileName = webFile.GetFileName(Request.Form.Files[0].FileName);
                 await webFile.UploadAndResizeImage(Request.Form.Files[0].OpenReadStream(), fileName, 800, 600);
                 profileModel.ProfileImage = fileName;
+                await _profile.AddOrUpdate(profileModel);
+                return Redirect("/profile");
             }
-            await _profile.AddOrUpdate(profileModel);
-            return Redirect("/");
         }
 
-        return View("Index", new ProfileViewModel());
+        return Redirect("/profile");
     }
 }
