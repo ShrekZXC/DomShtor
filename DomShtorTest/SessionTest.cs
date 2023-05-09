@@ -1,6 +1,7 @@
 ﻿using System.Transactions;
+using DomShtorTest.Helpers;
 
-namespace DomShtorTest.Helpers;
+namespace DomShtorTest;
 
 public class SessionTest: Helpers.BaseTest
 {

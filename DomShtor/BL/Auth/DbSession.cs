@@ -83,4 +83,10 @@ public class DbSession: IDbSession
         var data = await this.GetSession();
         await _sessionDal.Lock(data.DbSessionId);
     }
+    // Ресет сессии для тестов
+    public void ResetSessionСache()
+    {
+        sessionModel = null;
+    }
+
 }

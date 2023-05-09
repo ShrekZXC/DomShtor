@@ -5,18 +5,16 @@ namespace DomShtor.BL.Auth;
 
 public class CurrentUser: ICurrentUser
 {
-
-    private readonly IHttpContextAccessor _httpContextAccessor;
+    
     private readonly IDbSession _dbSession;
     private readonly IWebCoookie _webCoookie;
     private readonly IUserTokenDAL _userTokenDal;
     
-    public CurrentUser(IHttpContextAccessor httpContextAccessor,
+    public CurrentUser(
         IDbSession dbSession,
         IWebCoookie webCoookie,
         IUserTokenDAL userTokenDal)
     {
-        _httpContextAccessor = httpContextAccessor;
         _dbSession = dbSession;
         _webCoookie = webCoookie;
         _userTokenDal = userTokenDal;
