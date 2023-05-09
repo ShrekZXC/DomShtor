@@ -1,5 +1,6 @@
 ﻿using DomShtor.BL.Auth;
 using DomShtor.BL.General;
+using DomShtor.BL.Profile;
 using DomShtor.DAL;
 using Microsoft.AspNetCore.Http;
 
@@ -13,9 +14,10 @@ public class BaseTest
     protected IDbSessionDAL _dbSessionDal = new DbSessionDAL();
     protected IDbSession _dbSession;
     protected IWebCoookie _webCoookie;
-    protected IUserTokenDAL _userTokenDal = new UserTokenDalDal();
+    protected IUserTokenDAL _userTokenDal = new UserTokenDal();
     protected IProfileDAL _profileDal = new ProfileDAL();
     protected CurrentUser currentUser;
+    protected IProfile _profile;
 
     public BaseTest()
     {
@@ -23,6 +25,7 @@ public class BaseTest
         _dbSession = new DbSession(_dbSessionDal, _webCoookie);
         Auth = new Auth(_authDal, _encrypt ,_dbSession,_webCoookie, _userTokenDal);
         currentUser = new CurrentUser(_dbSession, _webCoookie, _userTokenDal,_profileDal);
+        _profile = new Profile(_profileDal);
     }
     
 }
