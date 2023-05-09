@@ -10,11 +10,9 @@ public class LoginViewModel
     }
     
     [Required(ErrorMessage = "Введите почту")]
-    public string Email { get; set; }
+    public string? Email { get; set; }
     
     [Required(ErrorMessage = "Введите пароль")]
-    public string Password { get; set; }
-    
-    [Required]
-    public  bool RememberMe { get; set; }
+    public string? Password { get; set; }
+    public  bool? RememberMe { get; set; }
 }

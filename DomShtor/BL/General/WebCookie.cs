@@ -11,20 +11,24 @@ public class WebCookie: IWebCoookie
         _httpContextAccessor = httpContextAccessor;
     }
     
-    public void AddSecure(string cookieName, string value)
+    public void AddSecure(string cookieName, string value, int days = 0)
     {
         CookieOptions options = new CookieOptions();
         options.Path = "/";
         options.HttpOnly = true;
         options.Secure = true;
+        if(days>0)
+            options.Expires = DateTimeOffset.UtcNow.AddDays(30);
         _httpContextAccessor?.HttpContext?.Response.Cookies.Append(cookieName, value, options);
     }
 
-    public void Add(string cookieName, string value)
+    public void Add(string cookieName, string value, int days = 0)
     {
         CookieOptions options = new CookieOptions();
 
         options.Path = "/";
+        if(days>0)
+            options.Expires = DateTimeOffset.UtcNow.AddDays(30);
         
         _httpContextAccessor?.HttpContext?.Response.Cookies.Append(cookieName, value, options);
     }
