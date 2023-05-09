@@ -38,13 +38,13 @@ public class WebFile
     {
         using (Image image = await Image.LoadAsync(fileStream))
         {
-            int aspectWidth = newWidth;
-            int aspectHeight = newHeight;
+            var aspectWidth = newWidth;
+            var aspectHeight = newHeight;
 
-            if (image.Width / (image.Height / newHeight) > newWidth)
+            if (image.Width / (image.Height / (float)newHeight) > newWidth)
                 aspectHeight = (int)(image.Height / (image.Width / (float)newHeight));
             else
-                aspectWidth = image.Width / (image.Height / newHeight);
+                aspectWidth = (int)(image.Width / (image.Height / (float)newHeight));
 
             image.Mutate(x=>x.Resize(aspectWidth, aspectHeight, KnownResamplers.Lanczos3));
             
