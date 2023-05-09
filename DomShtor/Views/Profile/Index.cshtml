@@ -8,6 +8,34 @@
 <div class="container profile-form">
     <form class="row justify-content-center col-12" method="post" action="/profile" enctype="multipart/form-data">
         @Html.AntiForgeryToken()
+        <h2>Регистрация</h2>
+
+
+        <div class="width-100"></div>
+
+        <div class="mb-3 col-12 col-md-4">
+            <label for="formInputSecondName" class="form-label">Фамилия</label>
+            <input id="formInputSecondName" class="form-control" name="SecondName" type="text" placeholder="Введите фамилию" value="@Model.SecondName">
+            <span asp-validation-for="SecondName"></span>
+        </div>
+
+        <div class="width-100"></div>
+        <div class="mb-3 col-12 col-md-4">
+            <label for="formInputFirstName" class="form-label">Имя</label>
+            <input id="formInputFirstName" class="form-control" name="FirstName" type="text" placeholder="Введите имя" value="@Model.FirstName">
+            <span asp-validation-for="FirstName"></span>
+        </div>
+
+        <div class="width-100"></div>
+
+        <div class="mb-3 col-12 col-md-4">
+            <label for="formInputLastName" class="form-label">Отчество</label>
+            <input id="formInputLastName" class="form-control" name="LastName" type="text" placeholder="Введите отчество" value="@Model.LastName">
+            <div id="lastNameHelp" class="form-text">Не обязательно</div>
+        </div>
+
+        <div class="width-100"></div>
+
         <div class="mb-3 col-12 col-md-4">
             <label for="formInputEmail" class="form-label">Email</label>
             <input id="formInputEmail" class="form-control" name="Email" type="text" aria-describedby="emailHelp" placeholder="Введите почту" value="@Model.Email">
@@ -17,9 +45,11 @@
         <div class="width-100"></div>
 
         <div class="mb-3 col-12 col-md-4">
-            <label for="forInputFile" class="form-label"></label>
+            <label for="forInputFile" class="form-label">Выберите изображение</label>
             <input id="forInputFile" type="file" name="file">
         </div>
+
+        <div class="width-100"></div>
 
         <div class="mb-3 col-12 col-md-4">
             <button type="submit" class="btn btn-secondary">Сохранить</button>
