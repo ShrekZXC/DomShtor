@@ -1,5 +1,6 @@
 ﻿using DomShtor.BL;
 using DomShtor.BL.Auth;
+using DomShtor.Middleware;
 using DomShtor.ViewMapper;
 using DomShtor.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using MySqlX.XDevAPI.Common;
 
 namespace DomShtor.Controllers;
 
+[SiteNotAuthorize()]
 public class RegisterController : Controller
 {
     private readonly IAuth _auth;
@@ -25,6 +27,7 @@ public class RegisterController : Controller
 
     [HttpPost]
     [Route("/register")]
+    [AutoValidateAntiforgeryToken]
     public async Task<IActionResult> IndexSave(RegisterViewModel model)
     {
         if (ModelState.IsValid)

@@ -1,13 +1,14 @@
 ﻿using DomShtor.BL.Auth;
+using DomShtor.Middleware;
 using DomShtor.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DomShtor.Controllers;
 
+[SiteNotAuthorize()]
 public class LoginController: Controller
 {
     private readonly IAuth _auth;
-
     public LoginController(IAuth auth)
     {
         _auth = auth;
@@ -22,6 +23,7 @@ public class LoginController: Controller
     
     [HttpPost]
     [Route("/login")]
+    [AutoValidateAntiforgeryToken]
     public async Task<IActionResult> IndexSave(LoginViewModel model)
     {
         if (ModelState.IsValid)
