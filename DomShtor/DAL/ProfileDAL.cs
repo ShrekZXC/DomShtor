@@ -23,8 +23,7 @@ public class ProfileDAL : IProfileDAL
         string sql = @"insert into Profile(UserId,Email, FirstName, SecondName, LastName, ProfileImage )
                              values(@UserId, @Email, @FirstName, @SecondName, @LastName, @ProfileImage);
                 select LAST_INSERT_ID();";
-        var result = await DbHelper.QueryAsync<int>(sql, profileModel);
-        return result.First();
+        return await DbHelper.QueryScalarAsync<int>(sql, profileModel);
     }
 
     public async Task Update(ProfileModel profileModel)
@@ -36,6 +35,6 @@ public class ProfileDAL : IProfileDAL
                         LastName = @LastName, 
                         ProfileImage = @ProfileImage
                     where ProfileId = @ProfileId";
-        var result = await DbHelper.QueryAsync<int>(sql, profileModel);
+        await DbHelper.ExecuteAsync(sql, profileModel);
     }
 }

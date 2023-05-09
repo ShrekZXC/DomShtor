@@ -19,7 +19,7 @@ public class Profile: IProfile
     public async Task AddOrUpdate(ProfileModel profileModel)
     {
         if (profileModel.ProfileId == null)
-            await _profileDal.Add(profileModel);
+            profileModel.ProfileId = await _profileDal.Add(profileModel);
         else
             await _profileDal.Update(profileModel);
     }
