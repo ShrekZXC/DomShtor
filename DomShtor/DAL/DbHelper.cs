@@ -12,7 +12,7 @@ public static class DbHelper
         {
             await connection.OpenAsync();
 
-            return await connection.QueryFirstOrDefaultAsync(sql, model);
+            return await connection.QueryFirstOrDefaultAsync<int>(sql, model);
         }
     }
 
