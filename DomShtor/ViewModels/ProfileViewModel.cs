@@ -4,6 +4,7 @@ namespace DomShtor.ViewModels;
 
 public class ProfileViewModel
 {
+    public int? ProfileId { get; set; }
     [Required]
     public string? Email { get; set; }
     [Required]

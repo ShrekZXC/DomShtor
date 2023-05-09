@@ -7,9 +7,9 @@
 
 <div class="container profile-form">
     <form class="row justify-content-center col-12" method="post" action="/profile" enctype="multipart/form-data">
+        <input type="hidden" name="ProfileId" value="@Model.ProfileId"/>
         @Html.AntiForgeryToken()
-        <h2>Регистрация</h2>
-
+        <h2>Редактирование профиля</h2>
 
         <div class="width-100"></div>
 

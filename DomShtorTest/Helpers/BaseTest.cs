@@ -14,6 +14,7 @@ public class BaseTest
     protected IDbSession _dbSession;
     protected IWebCoookie _webCoookie;
     protected IUserTokenDAL _userTokenDal = new UserTokenDalDal();
+    protected IProfileDAL _profileDal = new ProfileDAL();
     protected CurrentUser currentUser;
 
     public BaseTest()
@@ -21,7 +22,7 @@ public class BaseTest
         _webCoookie = new TestCookie();
         _dbSession = new DbSession(_dbSessionDal, _webCoookie);
         Auth = new Auth(_authDal, _encrypt ,_dbSession,_webCoookie, _userTokenDal);
-        currentUser = new CurrentUser(_dbSession, _webCoookie, _userTokenDal);
+        currentUser = new CurrentUser(_dbSession, _webCoookie, _userTokenDal,_profileDal);
     }
     
 }
