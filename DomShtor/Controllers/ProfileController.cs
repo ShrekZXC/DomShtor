@@ -1,10 +1,12 @@
 ﻿using System.Security.Cryptography;
+using DomShtor.Middleware;
 using DomShtor.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Org.BouncyCastle.Ocsp;
 
 namespace DomShtor.Controllers;
 
+[SiteAuthorize()]
 public class ProfileController : Controller
 {
     [HttpGet]

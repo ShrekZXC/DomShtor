@@ -6,9 +6,9 @@
 
 <div class="container reg-form">
     <form class="row justify-content-center col-12" method="post" action="/register">
-
+        @Html.AntiForgeryToken()
         <h2>Регистрация</h2>
-    
+
         <div class="mb-3 col-12 col-md-4">
             <label for="formInputEmail" class="form-label">Email</label>
             <input id="formInputEmail" class="form-control" name="Email" type="text" aria-describedby="emailHelp" placeholder="Введите почту" value="@Model.Email">
