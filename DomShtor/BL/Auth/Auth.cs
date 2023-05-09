@@ -38,7 +38,7 @@ public class Auth: IAuth
             if (rememberMe)
             {
                 Guid tokenId = await _userTokenDal.Create(user.UserId ?? 0);
-                _webCoookie.AddSecure(AuthConstants.RememberMeCookieName, tokenId.ToString(), 30);
+                _webCoookie.AddSecure(AuthConstants.RememberMeCookieName, tokenId.ToString(), AuthConstants.RememberMeDays);
             }
             return user.UserId ?? 0;
         }
