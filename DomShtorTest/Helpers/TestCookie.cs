@@ -26,4 +26,8 @@ public class TestCookie: IWebCoookie
             return cookie[cookieName];
         return null;
     }
+    
+    public void Clear() {
+        cookie.Clear();
+    }
 }
