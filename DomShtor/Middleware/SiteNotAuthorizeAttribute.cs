@@ -6,13 +6,14 @@ using Microsoft.AspNetCore.Mvc.Filters;
 namespace DomShtor.Middleware;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
-public class SiteNotAuthorizeAttribute : Attribute, IAsyncActionFilter
+public class SiteNotAuthorizeAttribute : Attribute, IAsyncAuthorizationFilter
 {
     public SiteNotAuthorizeAttribute()
     {
         
     }
-    public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+
+    public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
     {
         ICurrentUser? currentUser = context.HttpContext.RequestServices.GetService<ICurrentUser>();
 

@@ -6,21 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 namespace DomShtor.Controllers;
 
 [SiteNotAuthorize()]
-public class LoginController: Controller
+public class LoginController : Controller
 {
     private readonly IAuth _auth;
+
     public LoginController(IAuth auth)
     {
         _auth = auth;
     }
-    
+
     [HttpGet]
     [Route("/login")]
     public IActionResult Index()
     {
         return View("Index", new LoginViewModel());
     }
-    
+
     [HttpPost]
     [Route("/login")]
     [AutoValidateAntiforgeryToken]
@@ -38,7 +39,7 @@ public class LoginController: Controller
                 ModelState.AddModelError("Email", "Имя или Email неверные");
             }
         }
+
         return View("Index", model);
     }
-    
 }
